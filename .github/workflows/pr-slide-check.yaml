@@ -18,7 +18,6 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     permissions:
-      contents: write # Required to be able to write to GitHub Pages branch
       pull-requests: write # Write to PRs
     steps:
       # Clone lecture checker repo in the current directory
@@ -83,28 +82,18 @@ jobs:
         run: make install-service
 
       # Uncomment / move to get a tmux ssh session for interactive debugging
-     # - name: Setup tmate session
-     #   uses: mxschmitt/action-tmate@v3
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
 
       # Run the main thing: compiles slides, checks against slides-pdf/*
       - name: Check slides and build markdown table
         run: make table
 
-      # Store markdown file in variable such that it can be used with the pr-section action
-      # Handling of multi-line variables is slightly more complicated, based this on
-      # https://stackoverflow.com/questions/74137120/how-to-fix-or-avoid-error-unable-to-process-file-command-output-successfully
-      # - name: Get check table output
-      #   id: get_table
-      #   run: |
-      #     #echo -e "table<<EOF\n$(cat slide_status_pr.md)\nEOF" >> $GITHUB_OUTPUT
-      #     echo "table<<EOF"$'\n'"$(cat slide_status_pr.md)"$'\n'EOF >> $GITHUB_OUTPUT
-
-      # - uses: garrettjoecox/pr-section@main
-      #   with:
-      #     repo-token: ${{ secrets.GITHUB_TOKEN }}
-      #     section-name: "Slide Status Check"
-      #     section-value: ${{ steps.get_table.outputs.table }}
-
+      # Take the markdown document with the tables rendered in the previous step
+      # and add it as a comment to the PR that triggered this action.
+      # The comment_tag is there such that the comment can be updated after
+      # a potential re-run of the action.
+      # https://github.com/thollander/actions-comment-pull-request
       - name: PR comment with file
         uses: thollander/actions-comment-pull-request@v2
         with:
