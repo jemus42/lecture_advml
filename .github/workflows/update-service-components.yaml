@@ -12,11 +12,11 @@ jobs:
   update-service-components:
     runs-on: ubuntu-latest
     env:
-      GITHUB_PAT: ${{ secrets.CUSTOM_PAT }}
-    permissions: write-all
-    #permissions:
-    #  contents: write
-    #  actions: write
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    #permissions: write-all
+    permissions:
+      contents: write
+      #actions: write
       
       #checks: write
     steps:
