@@ -93,7 +93,7 @@ jobs:
       - name: Get check table output
         id: get_table
         run: |
-          echo "table=$(cat slide_status_pr.md)" >> $GITHUB_OUTPUT
+          echo -e "table<<EOF\n$(cat slide_status_pr.md)\nEOF" >> $GITHUB_OUTPUT
 
       - uses: garrettjoecox/pr-section@main
         with:
