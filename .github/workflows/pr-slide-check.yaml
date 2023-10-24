@@ -83,8 +83,8 @@ jobs:
         run: make install-service
 
       # Uncomment / move to get a tmux ssh session for interactive debugging
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+     # - name: Setup tmate session
+     #   uses: mxschmitt/action-tmate@v3
 
       # Run the main thing: compiles slides, checks against slides-pdf/*
       - name: Check slides and build markdown table
