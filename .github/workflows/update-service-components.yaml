@@ -14,7 +14,9 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     permissions:
+      contents: write
       actions: write
+      
       #checks: write
     steps:
       - name: Checkout repo
