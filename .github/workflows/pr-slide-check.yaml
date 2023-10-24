@@ -93,14 +93,20 @@ jobs:
       # Store markdown file in variable such that it can be used with the pr-section action
       # Handling of multi-line variables is slightly more complicated, based this on
       # https://stackoverflow.com/questions/74137120/how-to-fix-or-avoid-error-unable-to-process-file-command-output-successfully
-      - name: Get check table output
-        id: get_table
-        run: |
-          #echo -e "table<<EOF\n$(cat slide_status_pr.md)\nEOF" >> $GITHUB_OUTPUT
-          echo "table<<EOF"$'\n'"$(cat slide_status_pr.md)"$'\n'EOF >> $GITHUB_OUTPUT
+      # - name: Get check table output
+      #   id: get_table
+      #   run: |
+      #     #echo -e "table<<EOF\n$(cat slide_status_pr.md)\nEOF" >> $GITHUB_OUTPUT
+      #     echo "table<<EOF"$'\n'"$(cat slide_status_pr.md)"$'\n'EOF >> $GITHUB_OUTPUT
 
-      - uses: garrettjoecox/pr-section@main
+      # - uses: garrettjoecox/pr-section@main
+      #   with:
+      #     repo-token: ${{ secrets.GITHUB_TOKEN }}
+      #     section-name: "Slide Status Check"
+      #     section-value: ${{ steps.get_table.outputs.table }}
+
+      - name: PR comment with file
+        uses: thollander/actions-comment-pull-request@v2
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          section-name: "Slide Status Check"
-          section-value: ${{ steps.get_table.outputs.table }}
+          filePath: slide_status_pr.md
+          comment_tag: slide_check
