@@ -7,12 +7,8 @@
 # .. for only this particular lecture repo.
 on:
   workflow_dispatch:
-  push:
-    branches: [main, master]
-    # Probably makes most sense to only run this workflow when slides change
-    # Also added the workflow itself to trigger a run if it changes
-    # Comment out to run on every commit
-    paths: ['style/**', 'slides/**', 'slides-pdf/*.pdf']
+  pull_request:
+    paths: ['style/**', 'slides/**', 'latex-math/**']
 
 name: pr-slide-check
 
