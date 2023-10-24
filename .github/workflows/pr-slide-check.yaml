@@ -90,9 +90,9 @@ jobs:
       - name: Check slides and build markdown table
         run: make table
 
-     - name: Get check table output
-       id: get_table
-       run: echo "::set-output name=check_table::$(cat slide_status_pr.md)"
+      - name: Get check table output
+        id: get_table
+        run: echo "::set-output name=check_table::$(cat slide_status_pr.md)"
 
       - uses: garrettjoecox/pr-section@main
         with:
