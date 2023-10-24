@@ -23,6 +23,7 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: write # Required to be able to write to GitHub Pages branch
+      pull-requests: write # Write to PRs
     steps:
       # Clone lecture checker repo in the current directory
       # We need lecture repo to be a sub directory of this for reasons (can optimize this once stable + working)
