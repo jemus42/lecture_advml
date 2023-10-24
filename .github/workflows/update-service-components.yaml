@@ -30,7 +30,7 @@ jobs:
       # have to bother getting the exact file name of the root folder which would vary due to the SHA.
       - name: Get service components
         run: |
-          curl -sL https://api.github.com/repos/slds-lmu/lecture_service/tarball/main | tar -xz --directory=./ --wildcards --strip-components=2 "./*/service"
+          curl -sL https://api.github.com/repos/slds-lmu/lecture_service/tarball/main | tar -xz --directory=./ --wildcards --strip-components=2 "*/service"
 
       # Use this pull request action to auto-generate a PR with the changes
       # See https://github.com/peter-evans/create-pull-request#action-inputs
