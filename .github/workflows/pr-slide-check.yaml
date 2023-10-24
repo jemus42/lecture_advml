@@ -92,10 +92,11 @@ jobs:
 
       - name: Get check table output
         id: get_table
-        run: echo "::set-output name=check_table::$(cat slide_status_pr.md)"
+        run: |
+          echo "table=$(cat slide_status_pr.md)" >> $GITHUB_OUTPUT
 
       - uses: garrettjoecox/pr-section@main
         with:
           repo-token: '${{ secrets.GITHUB_TOKEN }}'
           section-name: 'Slide Status Check'
-          section-value: '${{ steps.get_table.outputs.check_table }}'
+          section-value: '${{ steps.get_table.outputs.table }}'
