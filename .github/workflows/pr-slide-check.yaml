@@ -97,6 +97,6 @@ jobs:
 
       - uses: garrettjoecox/pr-section@main
         with:
-          repo-token: '${{ secrets.GITHUB_TOKEN }}'
-          section-name: 'Slide Status Check'
-          section-value: '${{ steps.get_table.outputs.table }}'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          section-name: "Slide Status Check"
+          section-value: ${{ steps.get_table.outputs.table }}
